@@ -5,10 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-
-
 public class Flota {
     private int NrNave;
     private Nava[] nave;
@@ -32,17 +28,10 @@ public class Flota {
                 line = scanner.nextLine();
                 line = line.replaceAll("\\s", "");
                 Result = line.split(",");
-                if(Result[2].equals("NavaCroaziera"))
-                {
-                    this.AdaugaNava(new NavaCroaziera(Result[0], Result[1], Integer.parseInt(Result[3])));
-                }
-                else if(Result[2].equals("Cargo"))
-                {
-                    this.AdaugaNava(new Cargou(Result[0], Result[1], Integer.parseInt(Result[3])));
-                }
-                else if(Result[2].equals("Feribot"))
-                {
-                    this.AdaugaNava(new Feribot(Result[0], Result[1], Integer.parseInt(Result[3]), Integer.parseInt(Result[4])));
+                switch (Result[2]) {
+                    case "NavaCroaziera" -> this.AdaugaNava(new NavaCroaziera(Result[0], Result[1], Integer.parseInt(Result[3])));
+                    case "Cargo" -> this.AdaugaNava(new Cargou(Result[0], Result[1], Integer.parseInt(Result[3])));
+                    case "Feribot" -> this.AdaugaNava(new Feribot(Result[0], Result[1], Integer.parseInt(Result[3]), Integer.parseInt(Result[4])));
                 }
             }
         }
